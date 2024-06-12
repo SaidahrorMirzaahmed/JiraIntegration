@@ -10,11 +10,13 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
-builder.Services.AddSingleton(new JiraService(
-    _jiraDomain: "sayidahror.atlassian.net",
-    _jiraApiToken:"ATATT3xFfGF067Y6qPYTmo_umuzPQBpaHYpOgzVoFsAC-dTJbNPSXOcnqseHTg9m9COoPxVB46NDzFsWJ7Zj6q6ddvWvKZwdlFWboc7W7Fg5JSpZDaHo36hPNh1p8uUJPHe0EYswkZ3kZi4U26u3GV8ncQeNHBeEM_krJ8IGvI4_lueNKyEhHcM=3B5A3036",
-    _projectKey: "KAN"
-));
+builder.Services.AddSingleton<IJiraService>(sp =>
+            new JiraService(
+                _jiraDomain: ["Jira:Domain"],
+                _jiraApiToken: Configuration["Jira:ApiToken"],
+                _projectKey: Configuration["Jira:ProjectKey"]
+            )
+        );
 
 var app = builder.Build();
 // Configure the HTTP request pipeline.

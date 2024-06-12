@@ -11,7 +11,7 @@ public class JiraService(string _jiraDomain, string _jiraApiToken, string _proje
     {
         var _client = new RestClient(new Uri($"https://{_jiraDomain}"));
         var request = new RestRequest("rest/api/2/issue", Method.Post);
-        request.AddHeader("Authorization", $"Basic {Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{userEmail}:ATATT3xFfGF0yWq6sHUB6bQyYdycpQ6_0W3ARyJ0lKuTtWfTW_SreZs2AdRQtn_ukr0Gk5h63D4qR4qAEnUxB3n9YeYM36pqpVWHou7fWfq4dqiVSm2N7_2ww_sMFBavdImzhGg85CuMDN7giLuuNYdmnYePoe3ATGPs4FWbnQHcN0BXH7RsWsw=5C8067DE"))}");
+        request.AddHeader("Authorization", $"Basic {Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes($"{userEmail}:{_jiraApiToken}"))}");
         request.AddHeader("Content-Type", "application/json");
 
         var body = new
