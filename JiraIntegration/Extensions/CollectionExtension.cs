@@ -4,7 +4,7 @@ namespace JiraIntegration.Extensions;
 
 public static class CollectionExtension
 {
-    public static void AddServices(IServiceCollection services, IConfiguration configuration)
+    public static void AddServices(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddSingleton<IJiraService>(sp =>
             new JiraService(

@@ -1,3 +1,4 @@
+using JiraIntegration.Extensions;
 using JiraIntegration.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,14 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddControllers();
-builder.Services.AddSingleton<IJiraService>(sp =>
-            new JiraService(
-                _jiraDomain: ["Jira:Domain"],
-                _jiraApiToken: Configuration["Jira:ApiToken"],
-                _projectKey: Configuration["Jira:ProjectKey"]
-            )
-        );
-
+builder.Services.AddServices();
 var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
